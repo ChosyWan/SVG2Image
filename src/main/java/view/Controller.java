@@ -52,19 +52,32 @@ public Controller(){}
 @FXML
 public void initialize(){
 
+    submitButton.setDisable(true);
+
     // Define ImageType Combobox
     ObservableList<String> imageTypes = FXCollections.observableArrayList(
             "jpg","gif","tif"
     );
 
     imageType.setItems(imageTypes);
+    imageType.setOnMouseEntered(event -> {
+        //imageType.getStyleClass().add("hovered");
+    });
+    imageType.setOnMouseExited(event -> {
+        //imageType.getStyleClass().remove("hovered");
+    });
 
-    //System.out.println("Test");
+    colorPicker.setOnMouseEntered(event -> {
+        colorPicker.getStyleClass().add("hovered");
+    });
+
+    colorPicker.setOnMouseExited(event -> {
+        colorPicker.getStyleClass().remove("hovered");
+    });
 
     SVGService svgService = new SVGService();
 
     colorPicker.setValue(Color.BLUE);
-
 
     awtColor = new java.awt.Color((float)colorPicker.getValue().getRed(),(float)colorPicker.getValue().getGreen(),(float)colorPicker.getValue().getBlue(),(float)colorPicker.getValue().getOpacity());
 
@@ -93,7 +106,7 @@ public void initialize(){
 
     @FXML void updateImageType(){
 
-        System.out.println("test");
+        //System.out.println("test");
 
     }
 
@@ -105,7 +118,13 @@ public void initialize(){
         //fileChooser.setInitialDirectory(new File(pdfService.getSourcePath()));
         File file = fileChooser.showOpenDialog(selectFile.getScene().getWindow());
         if (file != null) {
-            filename.setText(file.getName());
+            if(!FilenameUtils.getExtension(file.getName()).equals("svg")){
+                file=null;
+                filename.setText("invalid file!");
+                submitButton.setDisable(true);
+            }
+            else {submitButton.setDisable(false);
+            filename.setText(file.getName());}
         }
 
     }

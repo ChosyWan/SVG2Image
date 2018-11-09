@@ -4,6 +4,7 @@
    -fx-lightblue: #4A849F;
    -fx-orange: #F2845C;
    -fx-lightyellow: #F5F1D5;
+   -fx-text-fill: #4A849F;
 }
 
 
@@ -120,36 +121,58 @@
 {
        -fx-background-insets: 0,1,2;
        -fx-background-radius: 10;
-       -fx-padding: 2 2 2 2;
+       -fx-padding: 0 0 0 0;
        -fx-background-color: transparent;
        -fx-border-radius : 10;
        -fx-border-width: 2;
        -fx-border-color:#4A849F;
 }
 
-.combo-box-base .text {
--fx-fill: #4A849F;
+.combo-box-base .arrow:hover{
+-fx-background-color: #4A849F;
 }
 
-.combo-box-base .arrow{
--fx-background-color: #4A849F;
+.hovered{
+       -fx-background-insets: 0,1,2;
+       -fx-background-radius: 10;
+       -fx-padding: 0 0 0 0;
+       -fx-background-color: -fx-lightblue;
+ }
+
+.hovered .arrow {
+        -fx-background-color: -fx-darkblue;
+}
+
+.arrow {
+        -fx-background-color: -fx-lightblue;
+}
+
+.hovered .text{
+       -fx-fill:-fx-darkblue;}
+
+.hovered .list-view .text {
+-fx-fill:-fx-lightblue;
+}
+
+.hovered .list-view .text:hover {
+-fx-fill:-fx-darkblue;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: -fx-darkblue;
+    -fx-text-fill: -fx-lightblue;
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 10;
 }
 
 .combo-box-popup .list-view .list-cell:filled:hover
 {
     -fx-background-color: #4A849F;
-    -fx-text-fill: red;
-    -fx-fill: red;
+    -fx-text-fill: -fx-darkblue;
 }
 
-.combo-box-popup .list-view .list-cell:filled:hover .text
-{
--fx-text-fill: red;
-}
-
-
-
-.toggle-button:hover {
+/*.toggle-button:hover {
  -fx-graphic: url('cancelButton2.png');
  -fx-rotate: -5;
 }
@@ -164,7 +187,7 @@
   -fx-border-radius : 10;
   -fx-border-width: 0;
   -fx-border-color:transparent;
-}
+}*/
 
 
 .button:hover { -fx-text-fill: #1B3440;
@@ -202,8 +225,7 @@
     -fx-border-radius: 10 10 0 0;
     -fx-background-radius: 10 10 0 0;
     -fx-background-color: #F2845C;
-
-    }
+}
 
 .WinButton {
 -fx-background-color: #F2845C;

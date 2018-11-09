@@ -42,7 +42,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Text fx:id="filename" strokeType="OUTSIDE" strokeWidth="0.0" text="Filename">
+            <Text fx:id="filename" fill="#4a849e" strokeType="OUTSIDE" strokeWidth="0.0" text="Filename">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
