@@ -61,7 +61,7 @@ public class Main extends Application {
         borderPane.setTop(toolBar);
         borderPane.setCenter(root);
         root.requestFocus();
-        scene = new Scene(borderPane, 300, 220);
+        scene = new Scene(borderPane, 300, 300);
         scene.getStylesheets().add("style.css");
         scene.setFill(Color.TRANSPARENT);
 
