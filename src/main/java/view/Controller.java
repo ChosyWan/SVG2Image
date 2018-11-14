@@ -1,7 +1,6 @@
 package view;
 
-import javafx.animation.RotateTransition;
-import javafx.animation.ScaleTransition;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,7 +49,7 @@ public class Controller {
     Text filename;
 
     @FXML
-    ImageView imagePreview;
+    ImageView imagePreview,okLogo;
 
     private SVGService svgService;
     private File svgFile;
@@ -63,6 +62,25 @@ public Controller(){}
 @FXML
 public void initialize(){
     checkBG();
+    Double transitionDuration = 500.00;
+    okLogo.setImage(new Image("icon_file.png"));
+    okLogo.setFitHeight(15);
+    okLogo.setOpacity(0);
+    ScaleTransition scale = new ScaleTransition(Duration.millis(transitionDuration),okLogo);
+    scale.setFromX(1.0f);
+    scale.setFromY(1.0f);
+    scale.setToX(1.5f);
+    scale.setToY(1.5f);
+    FadeTransition fade = new FadeTransition(Duration.millis(transitionDuration),okLogo);
+    fade.setFromValue(1);
+    fade.setToValue(0);
+    RotateTransition rotate = new RotateTransition(Duration.millis(transitionDuration-100),okLogo);
+    rotate.setFromAngle(0);
+    rotate.setToAngle(60);
+    TranslateTransition translate = new TranslateTransition(Duration.millis(transitionDuration),okLogo);
+    translate.setFromX(-20);
+    translate.setToX(40);
+    ParallelTransition parallel = new ParallelTransition(scale,fade,rotate,translate);
 
     submitButton.setDisable(true);
 
@@ -114,7 +132,7 @@ public void initialize(){
                         try{svgService.startConvert(bgColor.isSelected()?awtColor:null,svgFile,imageType.getSelectionModel().getSelectedItem().toString());}
                         catch (Exception t){System.out.println("Error Converting the SVG-File"+ t);}
                         submitButton.setDisable(false);
-
+                        parallel.play();
                             }
                     );
   }

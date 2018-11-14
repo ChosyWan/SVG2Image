@@ -23,7 +23,16 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Button fx:id="submitButton" mnemonicParsing="false" text="Create Image" GridPane.rowIndex="4" />
+      <HBox GridPane.rowIndex="4">
+         <children>
+            <Button fx:id="submitButton" mnemonicParsing="false" text="Create Image" />
+            <ImageView fx:id="okLogo" fitHeight="15.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
       <HBox GridPane.rowIndex="2">
          <children>
             <CheckBox fx:id="bgColor" mnemonicParsing="false" onAction="#checkBG" text="BG-Color">
