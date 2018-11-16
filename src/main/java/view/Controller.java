@@ -34,7 +34,7 @@ public class Controller {
     GridPane gridPane;
 
     @FXML
-    CheckBox bgColor;
+    CheckBox bgColor,flip,invert;
 
     @FXML
     ComboBox imageType;
@@ -50,6 +50,8 @@ public class Controller {
 
     @FXML
     ImageView imagePreview,okLogo;
+
+
 
     private SVGService svgService;
     private File svgFile;
@@ -129,7 +131,7 @@ public void initialize(){
                 if(svgFile!=null)
                 {
                     Platform.runLater(()->{
-                        try{svgService.startConvert(bgColor.isSelected()?awtColor:null,svgFile,imageType.getSelectionModel().getSelectedItem().toString());}
+                        try{svgService.startConvert(bgColor.isSelected()?awtColor:null,svgFile,imageType.getSelectionModel().getSelectedItem().toString(),0f);}
                         catch (Exception t){System.out.println("Error Converting the SVG-File"+ t);}
                         submitButton.setDisable(false);
                         parallel.play();
@@ -140,18 +142,14 @@ public void initialize(){
         }
     });
 
-    imageType.setOnAction((event -> {
+    flip.setOnAction((event -> {refreshImagePreview();}));
 
-    }));
-
+    invert.setOnAction(event -> {refreshImagePreview();});
 
 }
 
     @FXML void updateImageType(){
-
-        //System.out.println("test");
-
-    }
+ }
 
 
 
@@ -191,6 +189,7 @@ public void initialize(){
         if(awtColor!=null && svgFile!=null){
         try{ Image image = SwingFXUtils.toFXImage(svgService.convertIt(bgColor.isSelected()?awtColor:null, svgFile), null);
             imagePreview.setImage(image);
+
         }
         catch(Exception e){System.out.println("Error Preview");} }
     }
@@ -201,4 +200,11 @@ public void initialize(){
     refreshImagePreview();
     }
 
+    public CheckBox getFlip() {
+        return flip;
+    }
+
+    public CheckBox getInvert() {
+        return invert;
+    }
 }
